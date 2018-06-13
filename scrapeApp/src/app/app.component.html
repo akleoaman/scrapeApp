@@ -1,0 +1,34 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center" class="jumbotron">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  
+  <a href="http://localhost:8081/scrape">Update Data</a>
+</div>
+
+<input type="text" [(ngModel)]="searchText">
+<ul>
+  <li  *ngFor="let restaurant of restaurants">
+    {{ restaurant.restaurant }}  
+    <button type="button" class="btn btn-info btn-lg" (click)="showDetails = ! showDetails">Information</button>
+    <div class="well"  [hidden]="showDetails">
+      {{restaurant.info}}
+    </div>
+    
+      
+    <ul>
+      <li *ngFor="let category of restaurant.menu">
+        {{ category.category}}
+        <ul>
+          <li *ngFor="let products of category.products | filter: searchText">
+            {{ products.product}} {{products.rate}}
+    
+          </li>
+        </ul>
+      </li>
+    </ul>
+    </li>
+</ul>
+
+
